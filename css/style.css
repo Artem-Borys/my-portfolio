@@ -1,0 +1,404 @@
+/* css/style.css */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --header-bg: #f8f9fa;
+    --card-bg: #f1f1f1;
+    --border-color: #dddddd;
+    /* ... інші змінні для світлої теми ... */
+}
+
+body.dark-mode {
+    --primary-color: #9b59b6;
+    --secondary-color: #1abc9c;
+    --background-color: #2c3e50;
+    --text-color: #ecf0f1;
+    --header-bg: #34495e;
+    --card-bg: #3e5771;
+    --border-color: #4a6581;
+    /* ... інші змінні для темної теми ... */
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif; /* Обери гарний шрифт */
+    line-height: 1.6;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Стилі для Хедера */
+.header {
+    background-color: var(--header-bg);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky; /* для "липкого" хедера */
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.nav-item {
+    margin-left: 20px;
+}
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+.nav-link:hover {
+    color: var(--primary-color);
+}
+.theme-btn {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.theme-btn svg {
+    display: block; /* щоб не було зайвого простору */
+}
+.burger-menu { display: none; /* Показувати тільки на мобільних */ }
+
+/* Стилі для Hero секції */
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg); /* Або зображення/градієнт */
+    padding: 4rem 0;
+}
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.hero-content { flex: 1; }
+.hero-title { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem;}
+.hero-subtitle { font-size: 1.2rem; margin-bottom: 1.5rem; }
+.hero-image-container { flex: 1; text-align: center; }
+.hero-svg-animation { max-width: 100%; height: auto; max-height: 300px; }
+
+/* Стилі для кнопок */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    cursor: pointer;
+    border: none;
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%); /* SCSS функція, в CSS потрібно вказати колір */
+    transform: translateY(-2px);
+}
+.btn-secondary { /* ... */ }
+
+
+/* Стилі для секцій (загальні) */
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+.about-section, .projects-section, .contact-section {
+    padding: 4rem 0;
+}
+
+/* Секція "Про мене" */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.about-avatar {
+    width: 150px; /* Або більше */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+.about-text { flex: 1; }
+
+/* Секція "Мої проєкти" */
+.projects-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.project-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.project-thumbnail {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.project-info {
+    padding: 1rem;
+}
+.project-title { margin-top: 0; }
+.project-description-short { font-size: 0.9rem; margin-bottom: 1rem; }
+
+/* Модальне вікно */
+.modal {
+    display: none; /* Приховано за замовчуванням */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+.modal-content {
+    background-color: var(--background-color);
+    margin: 10% auto;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    width: 70%;
+    max-width: 700px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-close-btn {
+    color: var(--text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    color: #ff0000; /* червоний для кнопки закриття */
+    text-decoration: none;
+}
+.modal-project-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+/* Секція "Контакти" */
+.contact-wrapper {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap; /* для адаптивності */
+}
+.contact-form {
+    flex: 2; /* форма займає більше місця */
+    min-width: 300px; /* мінімальна ширина */
+}
+.contact-info {
+    flex: 1;
+    min-width: 250px;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    box-sizing: border-box; /* Щоб padding не збільшував ширину */
+}
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.5); /* Потрібно визначити --primary-color-rgb */
+}
+.error-message {
+    color: #e74c3c; /* Червоний для помилок */
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 0.2rem;
+}
+.success-message {
+    color: var(--secondary-color);
+    background-color: rgba(var(--secondary-color-rgb), 0.1); /* Потрібно --secondary-color-rgb */
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Футер */
+.footer {
+    background-color: var(--header-bg); /* або інший темний колір */
+    color: var(--text-color); /* світлий текст на темному фоні */
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Для малих екранів */
+}
+.copyright { margin: 0.5rem; }
+.footer-actions { margin: 0.5rem; }
+.scroll-to-top-btn {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Анімації при скролі (початковий стан) */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Адаптивна верстка (Медіа-запити) */
+
+/* Планшет (наприклад, до 1024px) */
+@media (max-width: 1024px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-image-container { margin-top: 2rem; }
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Мобільна версія (наприклад, до 768px) */
+@media (max-width: 768px) {
+    .nav {
+        display: none; /* Приховуємо звичайну навігацію */
+        position: absolute;
+        top: 100%; /* Під хедером */
+        left: 0;
+        width: 100%;
+        background-color: var(--header-bg);
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .nav.active { /* Клас для показу меню */
+        display: flex;
+    }
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-item {
+        margin: 0.5rem 0;
+    }
+    .burger-menu {
+        display: flex; /* Показуємо бургер */
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 10;
+    }
+    .burger-line {
+        width: 30px;
+        height: 3px;
+        background-color: var(--text-color);
+        border-radius: 2px;
+        transition: all 0.3s linear;
+    }
+    /* Анімація бургера в хрестик */
+    .burger-menu.active .burger-line:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+    }
+    .burger-menu.active .burger-line:nth-child(2) {
+        opacity: 0;
+    }
+    .burger-menu.active .burger-line:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+    }
+
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1rem; }
+
+    .contact-wrapper {
+        flex-direction: column;
+    }
+    .footer-container {
+        flex-direction: column;
+    }
+}
+
+/* Мобільна версія (зовсім мала, наприклад, до 480px) */
+@media (max-width: 480px) {
+    .projects-gallery {
+        grid-template-columns: 1fr; /* Одна картка в ряд */
+    }
+    .logo { font-size: 1.2rem; }
+    .section-title { font-size: 1.8rem; }
+}
